@@ -2,7 +2,8 @@
   "name": "content-types-client",
   "private": true,
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "eslint . --fix --ext .js,.ts,.tsx --cache --max-warnings 0"
   },
   "devDependencies": {
     "@types/node": "^18.13.0",
