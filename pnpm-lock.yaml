@@ -12,6 +12,12 @@ importers:
       '@commitlint/config-conventional': 17.4.2
       husky: 8.0.3
 
+  packages/content-types-client:
+    specifiers:
+      typescript: ^4.9.5
+    devDependencies:
+      typescript: 4.9.5
+
 packages:
 
   /@babel/code-frame/7.18.6:
