@@ -1,6 +1,9 @@
 {
   "name": "content-types-client",
   "private": true,
+  "scripts": {
+    "build": "tsc"
+  },
   "devDependencies": {
     "@types/node": "^18.13.0",
     "typescript": "^4.9.5"
