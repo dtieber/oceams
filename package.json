@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "license": "ISC",
   "scripts": {
+    "lint": "pnpm run -r --if-present lint",
     "prepare": "husky install"
   },
   "devDependencies": {
