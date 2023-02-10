@@ -4,7 +4,8 @@
   "license": "ISC",
   "scripts": {
     "lint": "pnpm run -r --if-present lint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "pnpm run -r --if-present test"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
