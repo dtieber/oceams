@@ -73,6 +73,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:editorconfig/noconflict',
     'plugin:react/recommended',
+    'plugin:react-hooks/recommended'
   ],
   settings: {
     'react': {
