@@ -1,7 +1,7 @@
 import { describe, expect, it } from '@jest/globals'
 
 import { addProperty, setName } from '../content-type-builder.actions'
-import { reducers, selectContentTypeName } from '../content-type-builder.reducers'
+import { reducers, selectContentTypeName, selectProperties } from '../content-type-builder.reducers'
 
 describe('content-type-builder.reducers', () => {
   it('SET_NAME action updates the name', () => {
@@ -77,5 +77,26 @@ describe('content-type-builder.reducers', () => {
         },
       ],
     })
+  })
+
+  it('selectProperties selector returns list of properties', () => {
+    const rootState = {
+      contentTypeBuilder: {
+        name: 'foo',
+        properties: [
+          {
+            name: 'my-property-name',
+            propertyType: 'string',
+          },
+        ],
+      },
+    }
+
+    expect(selectProperties(rootState)).toEqual([
+      {
+        name: 'my-property-name',
+        propertyType: 'string',
+      },
+    ])
   })
 })
