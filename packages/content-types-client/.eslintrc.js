@@ -25,7 +25,7 @@ module.exports = {
     '@typescript-eslint/no-floating-promises': 'error',
     '@typescript-eslint/no-shadow': 'error',
     '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_', 'varsIgnorePattern': '^_' }],
-    'array-bracket-newline': ['error', 'always'],
+    'array-bracket-newline': ['error', { 'minItems': 1 }],
     'array-bracket-spacing': 'error',
     'array-element-newline': ['error', 'always'],
     'block-spacing': ['error', 'always'],
