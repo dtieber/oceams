@@ -1,5 +1,6 @@
-import type { SetNameAction } from './content-type-builder.action-types'
-import { SET_NAME } from './content-type-builder.action-types'
+import type { AddPropertyAction, SetNameAction } from './content-type-builder.action-types'
+import { ADD_PROPERTY, SET_NAME } from './content-type-builder.action-types'
+import type { PropertyType } from './property-types'
 
 export function setName(name: string): SetNameAction {
   return {
@@ -8,5 +9,13 @@ export function setName(name: string): SetNameAction {
   }
 }
 
+export function addProperty(name: string, propertyType: PropertyType): AddPropertyAction {
+  return {
+    type: ADD_PROPERTY,
+    name,
+    propertyType,
+  }
+}
+
 export type ContentTypeBuilderActions =
-  typeof setName
+  typeof setName | typeof addProperty
