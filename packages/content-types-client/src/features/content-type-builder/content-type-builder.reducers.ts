@@ -1,6 +1,6 @@
 import type { RootState } from '../../app/store'
 import type { ContentTypeBuilderActionTypes } from './content-type-builder.action-types'
-import { SET_NAME } from './content-type-builder.action-types'
+import { ADD_PROPERTY, SET_NAME } from './content-type-builder.action-types'
 
 export type Property = {
   name: string
@@ -19,6 +19,17 @@ const initialState: ContentTypeBuilderState = {
 
 export const reducers = (state: ContentTypeBuilderState = initialState, action: ContentTypeBuilderActionTypes): ContentTypeBuilderState => {
   switch (action.type) {
+  case ADD_PROPERTY:
+    return {
+      ...state,
+      properties: [
+        ...state.properties,
+        {
+          name: action.name,
+          propertyType: action.propertyType,
+        },
+      ],
+    }
   case SET_NAME:
     return {
       ...state,
