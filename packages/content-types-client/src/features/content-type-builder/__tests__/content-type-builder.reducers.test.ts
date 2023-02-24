@@ -7,6 +7,7 @@ describe('content-type-builder.reducers', () => {
   it('SET_NAME action updates the name', () => {
     const originalState = {
       name: 'oldName',
+      properties: [],
     }
 
     const setNameAction = setName('newName')
@@ -14,6 +15,7 @@ describe('content-type-builder.reducers', () => {
 
     expect(updatedState).toEqual({
       name: 'newName',
+      properties: [],
     })
   })
 
@@ -21,6 +23,7 @@ describe('content-type-builder.reducers', () => {
     const rootState = {
       contentTypeBuilder: {
         name: 'foo',
+        properties: [],
       },
     }
 
