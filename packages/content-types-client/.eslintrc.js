@@ -74,4 +74,9 @@ module.exports = {
     'plugin:editorconfig/noconflict',
     'plugin:react/recommended',
   ],
+  settings: {
+    'react': {
+      'version': 'detect'
+    }
+  }
 }
