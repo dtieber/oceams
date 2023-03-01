@@ -1,3 +1,4 @@
+import { FieldStringOutlined } from '@ant-design/icons'
 import { Input, List, Typography } from 'antd'
 import * as React from 'react'
 
@@ -30,7 +31,7 @@ export function ContentTypeBuilder(props: ContentTypeBuilderProps): JSX.Element 
     <List
       size='small'
       dataSource={properties}
-      renderItem={(item):JSX.Element => <List.Item>{item.name}</List.Item>}>
+      renderItem={(item):JSX.Element => <List.Item><FieldStringOutlined /> {item.name}</List.Item>}>
     </List>
   </div>
 
