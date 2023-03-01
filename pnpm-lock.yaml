@@ -14,6 +14,7 @@ importers:
 
   packages/content-types-client:
     specifiers:
+      '@ant-design/icons': ^5.0.1
       '@jest/globals': ^29.4.2
       '@reduxjs/toolkit': ^1.9.2
       '@testing-library/react': ^13.4.0
@@ -47,6 +48,7 @@ importers:
       webpack-cli: ^5.0.1
       webpack-dev-server: ^4.11.1
     dependencies:
+      '@ant-design/icons': 5.0.1_biqbaboplfbrettd7655fr4n2y
       '@reduxjs/toolkit': 1.9.2_k4ae6lp43ej6mezo3ztvx6pykq
       antd: 5.2.0_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
