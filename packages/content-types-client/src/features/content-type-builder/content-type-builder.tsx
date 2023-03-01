@@ -1,4 +1,4 @@
-import { FieldStringOutlined } from '@ant-design/icons'
+import { FieldNumberOutlined, FieldStringOutlined, QuestionCircleOutlined } from '@ant-design/icons'
 import { Input, List, Typography } from 'antd'
 import * as React from 'react'
 
@@ -8,6 +8,7 @@ import type { addProperty, setName } from './content-type-builder.actions'
 import type { ContentTypeBuilderState } from './content-type-builder.reducers'
 import { getUniquePropertyName } from './get-unique-property-name'
 import type { PropertyType } from './property-types'
+import { NUMBER_PROPERTY_TYPE_IDENTIFIER, STRING_PROPERTY_TYPE_IDENTIFIER } from './property-types'
 
 type ContentTypeBuilderProps = ContentTypeBuilderState & { setName: typeof setName} & { addProperty: typeof addProperty}
 
@@ -17,6 +18,17 @@ export function ContentTypeBuilder(props: ContentTypeBuilderProps): JSX.Element 
   const handleOnAddProperty = (type: PropertyType): void => {
     const uniquePropertyName = getUniquePropertyName(properties, type)
     addProperty(uniquePropertyName, type)
+  }
+
+  const getIcon = (type: string): JSX.Element => {
+    switch(type) {
+    case NUMBER_PROPERTY_TYPE_IDENTIFIER:
+      return <FieldNumberOutlined />
+    case STRING_PROPERTY_TYPE_IDENTIFIER:
+      return <FieldStringOutlined />
+    default:
+      return <QuestionCircleOutlined />
+    }
   }
 
   return <div>
@@ -31,7 +43,7 @@ export function ContentTypeBuilder(props: ContentTypeBuilderProps): JSX.Element 
     <List
       size='small'
       dataSource={properties}
-      renderItem={(item):JSX.Element => <List.Item><FieldStringOutlined /> {item.name}</List.Item>}>
+      renderItem={(item):JSX.Element => <List.Item>{getIcon(item.propertyType)} {item.name}</List.Item>}>
     </List>
   </div>
 

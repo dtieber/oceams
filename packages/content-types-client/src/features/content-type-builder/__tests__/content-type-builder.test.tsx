@@ -52,7 +52,7 @@ describe('content-type-builder', () => {
       },
       {
         name: 'my-property-name2',
-        propertyType: 'string',
+        propertyType: 'number',
       },
     ]
 
