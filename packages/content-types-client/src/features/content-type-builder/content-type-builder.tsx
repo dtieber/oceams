@@ -10,7 +10,9 @@ import { getUniquePropertyName } from './get-unique-property-name'
 import type { PropertyType } from './property-types'
 import { NUMBER_PROPERTY_TYPE_IDENTIFIER, STRING_PROPERTY_TYPE_IDENTIFIER } from './property-types'
 
-type ContentTypeBuilderProps = ContentTypeBuilderState & { setName: typeof setName} & { addProperty: typeof addProperty}
+type ContentTypeBuilderProps = ContentTypeBuilderState &
+    { setName: typeof setName} &
+    { addProperty: typeof addProperty}
 
 export function ContentTypeBuilder(props: ContentTypeBuilderProps): JSX.Element {
   const { name, setName, properties, addProperty } = props

@@ -23,19 +23,27 @@ describe('content-type-builder', () => {
   })
 
   it('displays name of content type', () => {
-    const mockSetName = (_:string): SetNameAction => ({} as SetNameAction)
     const mockAddProperty = (_:string): AddPropertyAction => ({} as AddPropertyAction)
+    const mockSetName = (_:string): SetNameAction => ({} as SetNameAction)
 
-    render(<ContentTypeBuilder name='FooContentType' setName={mockSetName} properties={[]} addProperty={mockAddProperty} />)
+    render(<ContentTypeBuilder
+      name='FooContentType'
+      setName={mockSetName}
+      properties={[]}
+      addProperty={mockAddProperty} />)
 
     expect(screen.getByRole('heading')?.textContent).toBe('FooContentType')
   })
 
   it('updates name of content-type', () => {
-    const mockSetName = jest.fn() as (_: string) => SetNameAction
     const mockAddProperty = (_:string): AddPropertyAction => ({} as AddPropertyAction)
+    const mockSetName = jest.fn() as (_: string) => SetNameAction
 
-    const component = render(<ContentTypeBuilder name='FooContentType' setName={mockSetName} properties={[]} addProperty={mockAddProperty} />)
+    const component = render(<ContentTypeBuilder
+      name='FooContentType'
+      setName={mockSetName}
+      properties={[]}
+      addProperty={mockAddProperty} />)
     const input = component.getByPlaceholderText('Name of your content type')
     fireEvent.change(input, { target: { value: 'NewComponentName' } })
 
@@ -43,8 +51,8 @@ describe('content-type-builder', () => {
   })
 
   it('displays a list of all properties', () => {
-    const mockSetName = jest.fn() as (_: string) => SetNameAction
     const mockAddProperty = (_:string): AddPropertyAction => ({} as AddPropertyAction)
+    const mockSetName = jest.fn() as (_: string) => SetNameAction
     const listOfProperties = [
       {
         name: 'my-property-name',
@@ -56,7 +64,11 @@ describe('content-type-builder', () => {
       },
     ]
 
-    const component = render(<ContentTypeBuilder name='FooContentType' setName={mockSetName} properties={listOfProperties} addProperty={mockAddProperty} />)
+    const component = render(<ContentTypeBuilder
+      name='FooContentType'
+      setName={mockSetName}
+      properties={listOfProperties}
+      addProperty={mockAddProperty} />)
 
     expect(component.getByText('my-property-name')).toBeDefined()
     expect(component.getByText('my-property-name2')).toBeDefined()
