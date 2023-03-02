@@ -58,6 +58,8 @@ module.exports = {
     'operator-linebreak': ['error', 'before', { 'overrides': { '=': 'after' } }],
     'quote-props': ['error', 'as-needed'],
     'quotes': ['error', 'single'],
+    'react/jsx-first-prop-new-line': ['error'],
+    'react/jsx-max-props-per-line': ['error', { 'maximum': { single: 2, multi: 1 }}],
     'semi': ['error', 'never'],
     'simple-import-sort/exports': 'error',
     'simple-import-sort/imports': 'error',
