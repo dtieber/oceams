@@ -50,4 +50,5 @@ export const reducers = (state: ContentTypeBuilderState = initialState, action: 
 }
 
 export const selectContentTypeName = (state: RootState): string => state.contentTypeBuilder.name
+export const selectDomain = (state: RootState): string => state.contentTypeBuilder.domain
 export const selectProperties = (state: RootState): Property[] => state.contentTypeBuilder.properties

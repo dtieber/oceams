@@ -1,7 +1,7 @@
 import { describe, expect, it } from '@jest/globals'
 
 import { addProperty, setDomain, setName } from '../content-type-builder.actions'
-import { reducers, selectContentTypeName, selectProperties } from '../content-type-builder.reducers'
+import { reducers, selectContentTypeName, selectDomain, selectProperties } from '../content-type-builder.reducers'
 
 describe('content-type-builder.reducers', () => {
   it('ADD_PROPERTY action adds a property to an empty array of properties', () => {
@@ -94,6 +94,18 @@ describe('content-type-builder.reducers', () => {
       name: 'name',
       properties: [],
     })
+  })
+
+  it('selectDomain selector returns domain name', () => {
+    const rootState = {
+      contentTypeBuilder: {
+        domain: 'http://example.com',
+        name: 'foo',
+        properties: [],
+      },
+    }
+
+    expect(selectDomain(rootState)).toEqual('http://example.com')
   })
 
   it('SET_NAME action updates the name', () => {
