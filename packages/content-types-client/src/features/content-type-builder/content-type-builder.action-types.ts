@@ -7,6 +7,12 @@ export interface AddPropertyAction {
   propertyType: PropertyType;
 }
 
+export const SET_DOMAIN = 'contentTypeBuilderActionTypes/SET_DOMAIN'
+export interface SetDomainAction {
+  type: typeof SET_DOMAIN;
+  domain: string;
+}
+
 export const SET_NAME = 'contentTypeBuilderActionTypes/SET_NAME'
 export interface SetNameAction {
   type: typeof SET_NAME;
@@ -15,4 +21,5 @@ export interface SetNameAction {
 
 export type ContentTypeBuilderActionTypes =
   | AddPropertyAction
+  | SetDomainAction
   | SetNameAction
