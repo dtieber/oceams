@@ -1,3 +1,7 @@
 import { combineReducers } from '@reduxjs/toolkit'
 
-export const rootReducer = combineReducers({})
+import { reducers as contentTypeBuilderReducers } from './content-type-builder/content-type-builder.reducers'
+
+export const rootReducer = combineReducers({
+  contentTypeBuilder: contentTypeBuilderReducers,
+})
