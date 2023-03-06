@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import * as React from 'react'
 
 import { ContentTypeBuilder } from '../content-type-builder'
-import type { AddPropertyAction, SetNameAction } from '../content-type-builder.action-types'
+import type { AddPropertyAction, SetDomainAction, SetNameAction } from '../content-type-builder.action-types'
 
 describe('content-type-builder', () => {
   beforeAll(() => {
@@ -22,26 +22,30 @@ describe('content-type-builder', () => {
     })
   })
 
-  it('displays name of content type', () => {
+  it('displays fully qualified name of content type', () => {
     const mockAddProperty = (_:string): AddPropertyAction => ({} as AddPropertyAction)
+    const mockSetDomain = (_:string): SetDomainAction => ({} as SetDomainAction)
     const mockSetName = (_:string): SetNameAction => ({} as SetNameAction)
 
     render(<ContentTypeBuilder
       domain='http://example.com'
+      setDomain={mockSetDomain}
       name='FooContentType'
       setName={mockSetName}
       properties={[]}
       addProperty={mockAddProperty} />)
 
-    expect(screen.getByRole('heading')?.textContent).toBe('FooContentType')
+    expect(screen.getByRole('heading')?.textContent).toBe('http://example.com/FooContentType')
   })
 
   it('updates name of content-type', () => {
     const mockAddProperty = (_:string): AddPropertyAction => ({} as AddPropertyAction)
+    const mockSetDomain = (_:string): SetDomainAction => ({} as SetDomainAction)
     const mockSetName = jest.fn() as (_: string) => SetNameAction
 
     const component = render(<ContentTypeBuilder
       domain='http://example.com'
+      setDomain={mockSetDomain}
       name='FooContentType'
       setName={mockSetName}
       properties={[]}
@@ -54,6 +58,7 @@ describe('content-type-builder', () => {
 
   it('displays a list of all properties', () => {
     const mockAddProperty = (_:string): AddPropertyAction => ({} as AddPropertyAction)
+    const mockSetDomain = jest.fn() as (_: string) => SetDomainAction
     const mockSetName = jest.fn() as (_: string) => SetNameAction
     const listOfProperties = [
       {
@@ -68,6 +73,7 @@ describe('content-type-builder', () => {
 
     const component = render(<ContentTypeBuilder
       domain='http://example.com'
+      setDomain={mockSetDomain}
       name='FooContentType'
       setName={mockSetName}
       properties={listOfProperties}
@@ -75,5 +81,23 @@ describe('content-type-builder', () => {
 
     expect(component.getByText('my-property-name')).toBeDefined()
     expect(component.getByText('my-property-name2')).toBeDefined()
+  })
+
+  it('updates domain of content-type', () => {
+    const mockAddProperty = (_:string): AddPropertyAction => ({} as AddPropertyAction)
+    const mockSetDomain = jest.fn() as (_: string) => SetDomainAction
+    const mockSetName = (_:string): SetNameAction => ({} as SetNameAction)
+
+    const component = render(<ContentTypeBuilder
+      domain='http://example.com'
+      setDomain={mockSetDomain}
+      name='FooContentType'
+      setName={mockSetName}
+      properties={[]}
+      addProperty={mockAddProperty} />)
+    const input = component.getByPlaceholderText('Your domain')
+    fireEvent.change(input, { target: { value: 'http://newdomain.com' } })
+
+    expect(mockSetDomain).toHaveBeenCalledWith('http://newdomain.com')
   })
 })

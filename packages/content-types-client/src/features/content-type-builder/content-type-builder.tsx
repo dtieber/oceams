@@ -3,19 +3,21 @@ import { Input, List, Typography } from 'antd'
 import * as React from 'react'
 
 import { AddProperty } from './add-property'
-import type { SetNameAction } from './content-type-builder.action-types'
+import type { SetDomainAction, SetNameAction } from './content-type-builder.action-types'
 import type { addProperty, setName } from './content-type-builder.actions'
+import type { setDomain } from './content-type-builder.actions'
 import type { ContentTypeBuilderState } from './content-type-builder.reducers'
 import { getUniquePropertyName } from './get-unique-property-name'
 import type { PropertyType } from './property-types'
 import { NUMBER_PROPERTY_TYPE_IDENTIFIER, STRING_PROPERTY_TYPE_IDENTIFIER } from './property-types'
 
 type ContentTypeBuilderProps = ContentTypeBuilderState &
+    { setDomain: typeof setDomain} &
     { setName: typeof setName} &
     { addProperty: typeof addProperty}
 
 export function ContentTypeBuilder(props: ContentTypeBuilderProps): JSX.Element {
-  const { name, setName, properties, addProperty } = props
+  const { domain, setDomain, name, setName, properties, addProperty } = props
 
   const handleOnAddProperty = (type: PropertyType): void => {
     const uniquePropertyName = getUniquePropertyName(properties, type)
@@ -35,8 +37,12 @@ export function ContentTypeBuilder(props: ContentTypeBuilderProps): JSX.Element 
 
   return <div>
     <Typography>
-      <Typography.Title>{name}</Typography.Title>
+      <Typography.Title>{domain}/{name}</Typography.Title>
     </Typography>
+    <Input
+      placeholder='Your domain'
+      value={domain}
+      onChange={(e): SetDomainAction => setDomain(e.target.value)}/>
     <Input
       placeholder='Name of your content type'
       value={name}
