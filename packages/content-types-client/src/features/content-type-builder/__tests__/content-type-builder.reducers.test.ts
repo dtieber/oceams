@@ -1,11 +1,12 @@
 import { describe, expect, it } from '@jest/globals'
 
-import { addProperty, setName } from '../content-type-builder.actions'
+import { addProperty, setDomain, setName } from '../content-type-builder.actions'
 import { reducers, selectContentTypeName, selectProperties } from '../content-type-builder.reducers'
 
 describe('content-type-builder.reducers', () => {
   it('ADD_PROPERTY action adds a property to an empty array of properties', () => {
     const originalState = {
+      domain: 'http://example.com',
       name: 'my-name',
       properties: [],
     }
@@ -14,6 +15,7 @@ describe('content-type-builder.reducers', () => {
     const updatedState = reducers(originalState, setNameAction)
 
     expect(updatedState).toEqual({
+      domain: 'http://example.com',
       name: 'my-name',
       properties: [
         {
@@ -26,6 +28,7 @@ describe('content-type-builder.reducers', () => {
 
   it('ADD_PROPERTY action adds a property', () => {
     const originalState = {
+      domain: 'http://example.com',
       name: 'my-name',
       properties: [
         {
@@ -39,6 +42,7 @@ describe('content-type-builder.reducers', () => {
     const updatedState = reducers(originalState, setNameAction)
 
     expect(updatedState).toEqual({
+      domain: 'http://example.com',
       name: 'my-name',
       properties: [
         {
@@ -56,6 +60,7 @@ describe('content-type-builder.reducers', () => {
   it('selectProperties selector returns list of properties', () => {
     const rootState = {
       contentTypeBuilder: {
+        domain: 'http://example.com',
         name: 'foo',
         properties: [
           {
@@ -74,8 +79,26 @@ describe('content-type-builder.reducers', () => {
     ])
   })
 
+  it('SET_DOMAIN action updates the domain', () => {
+    const originalState = {
+      domain: 'http://old.com',
+      name: 'name',
+      properties: [],
+    }
+
+    const setNameAction = setDomain('http://new.com')
+    const updatedState = reducers(originalState, setNameAction)
+
+    expect(updatedState).toEqual({
+      domain: 'http://new.com',
+      name: 'name',
+      properties: [],
+    })
+  })
+
   it('SET_NAME action updates the name', () => {
     const originalState = {
+      domain: 'http://example.com',
       name: 'oldName',
       properties: [],
     }
@@ -84,6 +107,7 @@ describe('content-type-builder.reducers', () => {
     const updatedState = reducers(originalState, setNameAction)
 
     expect(updatedState).toEqual({
+      domain: 'http://example.com',
       name: 'newName',
       properties: [],
     })
@@ -92,6 +116,7 @@ describe('content-type-builder.reducers', () => {
   it('selectContentTypeName selector returns name of content type', () => {
     const rootState = {
       contentTypeBuilder: {
+        domain: 'http://example.com',
         name: 'foo',
         properties: [],
       },

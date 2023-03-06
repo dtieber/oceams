@@ -27,6 +27,7 @@ describe('content-type-builder', () => {
     const mockSetName = (_:string): SetNameAction => ({} as SetNameAction)
 
     render(<ContentTypeBuilder
+      domain='http://example.com'
       name='FooContentType'
       setName={mockSetName}
       properties={[]}
@@ -40,6 +41,7 @@ describe('content-type-builder', () => {
     const mockSetName = jest.fn() as (_: string) => SetNameAction
 
     const component = render(<ContentTypeBuilder
+      domain='http://example.com'
       name='FooContentType'
       setName={mockSetName}
       properties={[]}
@@ -65,6 +67,7 @@ describe('content-type-builder', () => {
     ]
 
     const component = render(<ContentTypeBuilder
+      domain='http://example.com'
       name='FooContentType'
       setName={mockSetName}
       properties={listOfProperties}
