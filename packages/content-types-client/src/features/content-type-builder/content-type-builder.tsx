@@ -16,6 +16,8 @@ type ContentTypeBuilderProps = ContentTypeBuilderState &
     { setName: typeof setName} &
     { addProperty: typeof addProperty}
 
+type OnChange = { target: { value: string } }
+
 export function ContentTypeBuilder(props: ContentTypeBuilderProps): JSX.Element {
   const { domain, setDomain, name, setName, properties, addProperty } = props
 
@@ -42,11 +44,11 @@ export function ContentTypeBuilder(props: ContentTypeBuilderProps): JSX.Element 
     <Input
       placeholder='Your domain'
       value={domain}
-      onChange={(e): SetDomainAction => setDomain(e.target.value)}/>
+      onChange={(e: OnChange): SetDomainAction => setDomain(e.target.value)}/>
     <Input
       placeholder='Name of your content type'
       value={name}
-      onChange={(e): SetNameAction => setName(e.target.value)}/>
+      onChange={(e: OnChange): SetNameAction => setName(e.target.value)}/>
     <AddProperty onAddProperty={handleOnAddProperty} />
     <List
       size='small'
