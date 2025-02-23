@@ -53,7 +53,7 @@ export function ContentTypeBuilder(props: ContentTypeBuilderProps): JSX.Element 
     <List
       size='small'
       dataSource={properties}
-      renderItem={(item):JSX.Element => <List.Item>{getIcon(item.propertyType)} {item.name}</List.Item>}>
+      renderItem={(item): React.JSX.Element => <List.Item>{getIcon(item.propertyType)} {item.name}</List.Item>}>
     </List>
   </div>
 
